@@ -2,8 +2,8 @@ from flask import Flask, render_template, request
 from googleapiclient.discovery import build
 import requests
 
-API_KEY_YOUTUBE = 'AIzaSyDfq7DwXC3jqp2HWpAI0576iyarz-HiFhc'
-API_KEY_ALPHAVANTAGE = 'EQXAK16TWUJMTV33'
+API_KEY_YOUTUBE = 'APPIKEY123456789'
+API_KEY_ALPHAVANTAGE = 'APIKEYABCDEFGHIJK'
 
 youtube = build('youtube', 'v3', developerKey=API_KEY_YOUTUBE)
 app = Flask(__name__)
