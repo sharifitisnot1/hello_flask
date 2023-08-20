@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Add a script tag to include your custom JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+<body>
+    
+    <div class="container">
+    <h1>Sharif's Web App</h1>
+
+    <div class="p">
+    <form action="/search" method="post">
+        <label for="category">Search YouTube:</label>
+        <input type="text" name="category" id="category">
+        <button type="submit">Search</button>
+    </form>
+
+    <form action="/get_stock_quote" method="get">
+        <label for="symbol">Check stock: </label>
+        <input type="text" name="symbol" id="symbol">
+        <button type="submit">Get Quote</button>
+    </form>
+ <div>
+    {% if quote %}
+    <h2>Stock Quote for {{ symbol }}:</h2>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Symbol</td>
+            <td>{{ symbol }}</td>
+        </tr>
+        <tr>
+            <td>Open Price</td>
+            <td>{{ quote["02. open"] }}</td>
+        </tr>
+        <tr>
+            <td>High Price</td>
+            <td>{{ quote["03. high"] }}</td>
+        </tr>
+        <tr>
+            <td>Low Price</td>
+            <td>{{ quote["04. low"] }}</td>
+        </tr>
+        <tr>
+            <td>Current Price</td>
+            <td>{{ quote["05. price"] }}</td>
+        </tr>
+        <tr>
+            <td>Volume</td>
+            <td>{{ quote["06. volume"] }}</td>
+        </tr>
+        <tr>
+            <td>Latest Trading Day</td>
+            <td>{{ quote["07. latest trading day"] }}</td>
+        </tr>
+    </table>
+    {% endif %}
+
+    {% if videos %}
+    <h2>Videos matching search results for '{{ category }}':</h2>
+    <ul>
+        {% for video in videos %}
+        <li>
+            <h3>{{ video.title }}</h3>
+            <p>{{ video.description }}</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.videoId }}" frameborder="0" allowfullscreen></iframe>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+</body>
+</html>

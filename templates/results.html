@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h1>Search Results</h1>
+
+    {% if category %}
+    <h2>Category: {{ category }}</h2>
+    {% endif %}
+
+    {% if videos %}
+    <h3>Videos:</h3>
+    <ul>
+        {% for video in videos %}
+        <li>
+            <h4>{{ video.title }}</h4>
+            <p>{{ video.description }}</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.videoId }}" frameborder="0" allowfullscreen></iframe>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
+
